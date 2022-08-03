@@ -2,6 +2,16 @@ package ru.netology.domain;
 
 public class MovieManager {
 
+    private int limit;
+
+    public MovieManager(int limit) {
+        this.limit = limit;
+    }
+
+    public MovieManager() {
+        this.limit = 10;
+    }
+
     private Movies[] movies = new Movies[0];
 
     public void add(Movies movie) {
@@ -16,23 +26,11 @@ public class MovieManager {
     }
 
     public Movies[] findLast() {
-        int length;
-        if (movies.length > 10) {
-            length = 10;
-        } else length = movies.length;
-        Movies[] result = new Movies[length];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = movies[movies.length - i - 1];
+        if (movies.length < limit) {
+            limit = movies.length;
         }
-        return result;
-    }
-
-    public Movies[] findLast(int length) {
-        if (movies.length < length) {
-            length = movies.length;
-        }
-        Movies[] result = new Movies[length];
-        for (int i = 0; i < length; i++) {
+        Movies[] result = new Movies[limit];
+        for (int i = 0; i < limit; i++) {
             result[i] = movies[movies.length - i - 1];
         }
         return result;

@@ -33,12 +33,12 @@ public class MovieManagerTest {
 
     @Test
     public void findLastwithParameterTest() {
-        MovieManager manager = new MovieManager();
+        MovieManager manager = new MovieManager(2);
         manager.add(first);
         manager.add(second);
         manager.add(third);
 
-        Movies[] actual = manager.findLast(2);
+        Movies[] actual = manager.findLast();
         Movies[] expected = {third, second};
         Assertions.assertArrayEquals(expected, actual);
     }
