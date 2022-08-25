@@ -26,11 +26,12 @@ public class MovieManager {
     }
 
     public Movies[] findLast() {
+        int outputAmount = limit;
         if (movies.length < limit) {
-            limit = movies.length;
+            outputAmount = movies.length;
         }
-        Movies[] result = new Movies[limit];
-        for (int i = 0; i < limit; i++) {
+        Movies[] result = new Movies[outputAmount];
+        for (int i = 0; i < outputAmount; i++) {
             result[i] = movies[movies.length - i - 1];
         }
         return result;
