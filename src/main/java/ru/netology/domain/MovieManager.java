@@ -1,31 +1,26 @@
 package ru.netology.domain;
 
 public class MovieManager {
+    private MovieRepository repo;
 
     private int limit;
 
-    public MovieManager(int limit) {
+    public MovieManager(int limit, MovieRepository repo) {
         this.limit = limit;
+        this.repo = repo;
     }
 
-    public MovieManager() {
+    public MovieManager(MovieRepository repo) {
         this.limit = 10;
+        this.repo = repo;
     }
-
-    private Movies[] movies = new Movies[0];
 
     public void add(Movies movie) {
-        int length = movies.length + 1;
-
-        Movies[] tmp = new Movies[length];
-        for (int i = 0; i < movies.length; i++) {
-            tmp[i] = movies[i];
-        }
-        tmp[tmp.length - 1] = movie;
-        movies = tmp;
+        repo.save(movie);
     }
 
     public Movies[] findLast() {
+        Movies[] movies = repo.findAll();
         int outputAmount = limit;
         if (movies.length < limit) {
             outputAmount = movies.length;
@@ -39,7 +34,7 @@ public class MovieManager {
 
 
     public Movies[] findAll() {
-        return movies;
+        return repo.findAll();
     }
 
 
